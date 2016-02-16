@@ -1,0 +1,34 @@
+{
+  "name": "node-minecraft-motd-parser",
+  "version": "1.0.0",
+  "description": "A simple motd parser",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antariano/node-minecraft-motd-parser.git"
+  },
+  "keywords": [
+    "motd",
+    "color",
+    "parser"
+  ],
+  "author": "Luca \"Antariano\" Rager <antarianetwork@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Antariano/node-minecraft-motd-parser/issues"
+  },
+  "homepage": "https://github.com/Antariano/node-minecraft-motd-parser#readme"
+}
