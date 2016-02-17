@@ -3,9 +3,19 @@ var parser = require('../index.js');
 
 var strings = {
 	regular: "Hey I'm a super normal string. I have some punctuation: § will not change.",
-	heavy: "§r§00 §11 §22 §33 §44 §55 §66 §77 §88 §99 §aa §bb §cc §dd §ee §ff"
-  
-}
+	colors: "§00 §11 §22 §33",
+    heavy: "§nMinecraft Formatting \n"+
+           "§r§00 §11 §22 §33 \n"+
+           "§44 §55 §66 §77 \n"+
+           "§88 §99 §aa §bb \n"+
+           "§cc §dd §ee §ff \n"+
+           "§r§0k §kMinecraft \n"+
+           "§rl §lMinecraft \n"+
+           "§rm §mMinecraft \n"+
+           "§rn §nMinecraft \n"+
+           "§ro §oMinecraft \n"+
+           "§rr§§ §rMinecraft \n"
+};
 
 describe('motd-parser', function() {
 
@@ -45,20 +55,66 @@ describe('motd-parser', function() {
 	    	parser.parse(strings.regular, function (err, result) {
 	    		if (err) throw err;
 
-	    		expect(result).to.deep.equal([{format: [], string: strings.regular}]);
+	    		expect(result).to.deep.equal([{rules: {}, string: strings.regular}]);
 
 	    		done();
 	    	});
 	    });
 
-	    it('should correctly convert motds with modifiers', function (done) {
-	    	parser.parse(strings.heavy, function (err, result) {
-	    		if (err) throw err;
+	    describe('MOTD tests: ', function () {
 
-	    		expect(result).to.deep.equal([{format: [], string: strings.heavy}]);
+            it('converts simple color string', function (done) {
+                parser.parse(strings.colors, function (err, result) {
+                    if (err) throw err;
+                    expect(result).to.deep.equal([
+                        {rules: {color: "black"}, string: '0 '},
+                        {rules: {color: "dark-blue"}, string: '1 '},
+                        {rules: {color: "dark-green"}, string: '2 '},
+                        {rules: {color: "dark-acqua"}, string: '3'},
+                    ]);
+                    done();
+                });
+            });
 
-	    		done();
-	    	});
+            it('converts a complex string with newlines and all rules', function (done) {
+                parser.parse(strings.heavy, function (err, result) {
+                    if (err) throw err;
+                    expect(result).to.deep.equal([
+                      { rules: { decoration: 'underline' }, string: 'Minecraft Formatting \n' },
+                      { rules: {}, string: '' },
+                      { rules: { color: 'black' }, string: '0 ' },
+                      { rules: { color: 'dark-blue' }, string: '1 ' },
+                      { rules: { color: 'dark-green' }, string: '2 ' },
+                      { rules: { color: 'dark-acqua' }, string: '3 \n' },
+                      { rules: { color: 'dark-red' }, string: '4 ' },
+                      { rules: { color: 'dark-purple' }, string: '5 ' },
+                      { rules: { color: 'gold' }, string: '6 ' },
+                      { rules: { color: 'gray' }, string: '7 \n' },
+                      { rules: { color: 'dark-gray' }, string: '8 ' },
+                      { rules: { color: 'blue' }, string: '9 ' },
+                      { rules: { color: 'green' }, string: 'a ' },
+                      { rules: { color: 'acqua' }, string: 'b \n' },
+                      { rules: { color: 'red' }, string: 'c ' },
+                      { rules: { color: 'light-purple' }, string: 'd ' },
+                      { rules: { color: 'yellow' }, string: 'e ' },
+                      { rules: { color: 'white' }, string: 'f \n' },
+                      { rules: {}, string: '' },
+                      { rules: { color: 'black' }, string: 'k ' },
+                      { rules: { color: 'black', special: 'magic' }, string: 'Minecraft \n' },
+                      { rules: {}, string: 'l ' },
+                      { rules: { weight: 'bold' }, string: 'Minecraft \n' },
+                      { rules: {}, string: 'm ' },
+                      { rules: { decoration: 'line-through' }, string: 'Minecraft \n' },
+                      { rules: {}, string: 'n ' },
+                      { rules: { decoration: 'underline' }, string: 'Minecraft \n' },
+                      { rules: {}, string: 'o ' },
+                      { rules: { style: 'italic' }, string: 'Minecraft \n' },
+                      { rules: {}, string: 'r§§ ' },
+                      { rules: {}, string: 'Minecraft \n' } ]);
+                    done();
+                });
+            });
+
 	    });
 
   	});
