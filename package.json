@@ -1,5 +1,5 @@
 {
-  "name": "node-minecraft-motd-parser",
+  "name": "minecraft-motd-parser",
   "version": "1.0.0",
   "description": "A simple motd parser",
   "main": "index.js",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Antariano/node-minecraft-motd-parser.git"
+    "url": "git+https://github.com/Antariano/minecraft-motd-parser.git"
   },
   "keywords": [
     "motd",
@@ -29,7 +29,7 @@
   "author": "Luca \"Antariano\" Rager <antarianetwork@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Antariano/node-minecraft-motd-parser/issues"
+    "url": "https://github.com/Antariano/minecraft-motd-parser/issues"
   },
-  "homepage": "https://github.com/Antariano/node-minecraft-motd-parser#readme"
+  "homepage": "https://github.com/Antariano/minecraft-motd-parser#readme"
 }
