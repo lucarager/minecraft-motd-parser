@@ -1,7 +1,7 @@
 MOTD parser
 ======================================================
 
-```
+```javascript
 var parser = require('minecraft-motd-parser');
 var motd = "§00 §11 §22 §33";
 
